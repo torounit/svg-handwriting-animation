@@ -7,27 +7,53 @@
 /* eslint-disable no-console */
 
 export default class DrawSvg {
-  constructor(el, order, length, frame) {
+  constructor(el, order, speed) {
     this.el = el;
     this.order = order;
+    const length = el.getTotalLength();
+    const frame = Math.ceil(length / speed);
     this.totalLength = length;
     this.totalFrame = frame;
     this.currentFrame = 0;
     this.requestId = null;
   }
-  play() {
-    this.draw();
+
+  getFrame() {
+    return this.totalFrame;
   }
+
+  reset() {
+    const l = this.el.getTotalLength();
+    this.el.style.strokeDasharray = `${l} ${l}`;
+    this.el.style.strokeDashoffset = l;
+  }
+
+  play() {
+    return new Promise((resolve) => {
+      const result = this.draw();
+      if (result.complete) {
+        resolve(result);
+      }
+    });
+  }
+
   draw() {
     const progress = this.currentFrame / this.totalFrame;
     if (progress > 1) {
-      window.caf(this.requestId);
+      window.cancelAnimationFrame(this.requestId);
+      return {
+        complete: true,
+      };
     } else {
       this.currentFrame += 1;
       this.el.style.strokeDashoffset = Math.floor(this.totalLength * (1 - progress));
-      this.requestId = window.raf(() => {
+      this.requestId = window.requestAnimationFrame(() => {
         this.draw();
       });
+
+      return {
+        complete: false,
+      };
     }
   }
 }

@@ -6,7 +6,6 @@
 
 /* eslint-disable no-console */
 
-import requestAnimFrame from './requestAnimFrame';
 import DrawSvg from './DrawSvg';
 
 export default class PlayHandwriting {
@@ -14,32 +13,23 @@ export default class PlayHandwriting {
     this.pathArr = pathArr;
     this.speed = speed;
     this.interval = interval;
-    this.instanceArr = [];
-    this.frameArr = [];
     this.durationArr = [];
-  }
-  static reset(target) {
-    target.forEach((elm) => {
-      // const type = elm.tagName;
-      // if (type === 'path') {
-      const e = elm;
-      const l = e.getTotalLength();
-      e.style.strokeDasharray = `${l} ${l}`;
-      e.style.strokeDashoffset = l;
-      // }
+    this.instanceArr = this.pathArr.map((elm, i) => {
+      return new DrawSvg(elm, i, this.speed);
+    });
+    this.frameArr = this.instanceArr.map((drawSvg) => {
+      return drawSvg.getFrame();
     });
   }
-  settings() {
-    this.pathArr.forEach((elm, i) => {
-      const length = elm.getTotalLength();
-      const frame = Math.ceil(length / this.speed);
-      const drawSvg = new DrawSvg(elm, i, length, frame);
-      this.instanceArr.push(drawSvg);
-      this.frameArr.push(frame);
+
+  reset() {
+    this.instanceArr.forEach((elm) => {
+      elm.reset();
     });
   }
+
   timer() {
-    this.settings();
+    console.log(this.frameArr)
     const length = this.frameArr.length;
     this.frameArr.unshift(1);
     this.frameArr.pop();
@@ -51,8 +41,8 @@ export default class PlayHandwriting {
       }
     }
   }
+
   playAnimation() {
-    requestAnimFrame();
     this.timer();
     this.instanceArr.forEach((item, i) => {
       setTimeout(() => {
