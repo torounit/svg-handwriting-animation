@@ -7,9 +7,8 @@
 /* eslint-disable no-console */
 
 export default class DrawSvg {
-  constructor(el, order, speed) {
+  constructor(el, speed) {
     this.el = el;
-    this.order = order;
     const length = el.getTotalLength();
     const frame = Math.ceil(length / speed);
     this.totalLength = length;
@@ -24,9 +23,8 @@ export default class DrawSvg {
 
   reset() {
     this.currentFrame = 0;
-    const l = this.el.getTotalLength();
-    this.el.style.strokeDasharray = `${l} ${l}`;
-    this.el.style.strokeDashoffset = l;
+    this.el.style.strokeDasharray = `${this.totalLength} ${this.totalLength}`;
+    this.el.style.strokeDashoffset = this.totalLength;
   }
 
   play() {

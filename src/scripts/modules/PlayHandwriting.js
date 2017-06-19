@@ -14,7 +14,7 @@ export default class PlayHandwriting {
     this.pathArr = pathArr;
     this.speed = speed;
     this.instanceArr = this.pathArr.map((elm, i) => {
-      return new DrawSvg(elm, i, this.speed);
+      return new DrawSvg(elm, this.speed);
     });
   }
 
