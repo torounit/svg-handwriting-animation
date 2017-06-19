@@ -1,12 +1,12 @@
 /**
  *
- * DrawSvg
+ * Path
  *
  */
 
 /* eslint-disable no-console */
 
-export default class DrawSvg {
+export default class Path {
   constructor(el, speed) {
     this.el = el;
     this.totalLength = el.getTotalLength();

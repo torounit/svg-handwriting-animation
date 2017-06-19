@@ -6,7 +6,7 @@
 
 /* eslint-disable no-console */
 
-import DrawSvg from './DrawSvg';
+import Path from './Path';
 
 
 export default class PlayHandwriting {
@@ -14,7 +14,7 @@ export default class PlayHandwriting {
     this.pathArr = pathArr;
     this.speed = speed;
     this.instanceArr = this.pathArr.map((elm, i) => {
-      return new DrawSvg(elm, this.speed);
+      return new Path(elm, this.speed);
     });
   }
 
