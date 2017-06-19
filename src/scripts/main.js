@@ -6,7 +6,7 @@
 
 /* eslint-disable no-console */
 
-import PlayHandwriting from './modules/PlayHandwriting';
+import Renderer from './modules/Renderer';
 import replay from './modules/replay';
 
 const path1 = Array.from(document.querySelectorAll('#js-mask path'));
@@ -14,14 +14,14 @@ const path2 = Array.from(document.querySelectorAll('#js-clip path'));
 const btn1 = document.getElementById('btn1');
 const btn2 = document.getElementById('btn2');
 
-const ph1 = new PlayHandwriting(path1, 15);
-const ph2 = new PlayHandwriting(path2, 15);
+const renderer1 = new Renderer(path1, 15);
+const renderer2 = new Renderer(path2, 15);
 
 const resetAll = () => {
   const wait = document.getElementById('js-wait');
   wait.classList.add('fadeout');
-  ph1.reset();
-  ph2.reset();
+  renderer1.reset();
+  renderer2.reset();
 };
 
 const btnShow1 = () => {
@@ -44,13 +44,13 @@ const btnShow2 = () => {
 
 const initPromise = () => Promise.resolve()
   .then(resetAll)
-  .then(() => ph1.playAnimation())
+  .then(() => renderer1.play())
   .then(btnShow1)
-  .then(() => ph2.playAnimation())
+  .then(() => renderer2.play())
   .then(btnShow2);
 
 
 window.onload = () => initPromise();
 
-replay(btn1, ph1);
-replay(btn2, ph2);
+replay(btn1, renderer1);
+replay(btn2, renderer2);

@@ -4,8 +4,6 @@
  *
  */
 
-/* eslint-disable no-console */
-
 export default class Path {
   constructor(el, speed) {
     this.el = el;
@@ -13,10 +11,6 @@ export default class Path {
     this.totalFrame = Math.ceil(this.totalLength / speed);
     this.currentFrame = 0;
     this.requestId = null;
-  }
-
-  getFrame() {
-    return this.totalFrame;
   }
 
   reset() {

@@ -4,12 +4,10 @@
  *
  */
 
-import PlayHandwriting from './PlayHandwriting';
-
-export default function replay(target, instance) {
-  target.addEventListener('click', () => {
-    target.classList.toggle('disabled');
-    instance.reset();
-    instance.playAnimation().then(() => target.classList.toggle('disabled'));
+export default function replay(target, renderer) {
+  target.addEventListener('click', (event) => {
+    event.currentTarget.classList.toggle('disabled');
+    renderer.reset();
+    renderer.play().then(() => event.currentTarget.classList.toggle('disabled'));
   }, false);
 }
