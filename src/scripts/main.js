@@ -14,8 +14,8 @@ const path2 = Array.from(document.querySelectorAll('#js-clip path'));
 const btn1 = document.getElementById('btn1');
 const btn2 = document.getElementById('btn2');
 
-const ph1 = new PlayHandwriting(path1, 15, 0);
-const ph2 = new PlayHandwriting(path2, 15, 0);
+const ph1 = new PlayHandwriting(path1, 15);
+const ph2 = new PlayHandwriting(path2, 15);
 
 const resetAll = () => {
   const wait = document.getElementById('js-wait');

@@ -30,30 +30,23 @@ export default class DrawSvg {
 
   play() {
     return new Promise((resolve) => {
-      const result = this.draw();
-      if (result.complete) {
-        resolve(result);
-      }
+      const draw = () => {
+        const progress = this.currentFrame / this.totalFrame;
+        if (progress > 1) {
+          window.cancelAnimationFrame(this.requestId);
+          return resolve('complete');
+        } else {
+          this.currentFrame += 1;
+          this.el.style.strokeDashoffset = Math.floor(this.totalLength * (1 - progress));
+          this.requestId = window.requestAnimationFrame(() => {
+            draw();
+          });
+          return {
+            complete: false,
+          };
+        }
+      };
+      return draw();
     });
-  }
-
-  draw() {
-    const progress = this.currentFrame / this.totalFrame;
-    if (progress > 1) {
-      window.cancelAnimationFrame(this.requestId);
-      return {
-        complete: true,
-      };
-    } else {
-      this.currentFrame += 1;
-      this.el.style.strokeDashoffset = Math.floor(this.totalLength * (1 - progress));
-      this.requestId = window.requestAnimationFrame(() => {
-        this.draw();
-      });
-
-      return {
-        complete: false,
-      };
-    }
   }
 }
