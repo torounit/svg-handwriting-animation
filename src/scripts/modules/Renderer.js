@@ -30,7 +30,7 @@ export default class Renderer {
      * @private
      * @type {Path[]}
      */
-    this.path = this.elements.map(createPath);
+    this.paths = this.elements.map(createPath);
     this.reset();
   }
 
