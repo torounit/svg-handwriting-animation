@@ -9,10 +9,8 @@
 export default class DrawSvg {
   constructor(el, speed) {
     this.el = el;
-    const length = el.getTotalLength();
-    const frame = Math.ceil(length / speed);
-    this.totalLength = length;
-    this.totalFrame = frame;
+    this.totalLength = el.getTotalLength();
+    this.totalFrame = Math.ceil(this.totalLength / speed);
     this.currentFrame = 0;
     this.requestId = null;
   }
