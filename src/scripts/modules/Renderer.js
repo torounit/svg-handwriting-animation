@@ -19,7 +19,6 @@ export default class Renderer {
      * @type {Array}
      */
     this.elements = Array.from(elements);
-    console.log(this.elements);
     /**
      * @private
      * @type {Path[]}
