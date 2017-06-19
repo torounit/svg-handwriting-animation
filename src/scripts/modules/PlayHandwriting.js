@@ -30,7 +30,7 @@ export default class PlayHandwriting {
     // this.instanceArr.forEach((instance) => {
     //   prev = prev.then(() => instance.play());
     // });
-    this.instanceArr.reduce((prev, current) => {
+    return this.instanceArr.reduce((prev, current) => {
       return prev.then(() => current.play());
     }, Promise.resolve());
 

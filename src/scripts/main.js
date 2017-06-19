@@ -23,28 +23,13 @@ const resetAll = () => {
   ph1.reset();
   ph2.reset();
 };
-const play1 = () => {
-  return new Promise((resolve) => {
-    return setTimeout(() => {
-      ph1.playAnimation();
-      return resolve();
-    }, 1000);
-  });
-};
+
 const btnShow1 = () => {
   return new Promise((resolve) => {
     return setTimeout(() => {
       btn1.classList.toggle('hidden');
       return resolve();
-    }, 1000);
-  });
-};
-const play2 = () => {
-  return new Promise((resolve) => {
-    return setTimeout(() => {
-      ph2.playAnimation();
-      return resolve();
-    }, 1000);
+    }, 200);
   });
 };
 
@@ -53,14 +38,15 @@ const btnShow2 = () => {
     return setTimeout(() => {
       btn2.classList.toggle('hidden');
       return resolve();
-    }, 1000);
+    }, 200);
   });
 };
+
 const initPromise = () => Promise.resolve()
   .then(resetAll)
-  .then(play1)
+  .then(() => ph1.playAnimation())
   .then(btnShow1)
-  .then(play2)
+  .then(() => ph2.playAnimation())
   .then(btnShow2);
 
 // const ph1 = new PlayHandwriting(path1, 15, 0);
