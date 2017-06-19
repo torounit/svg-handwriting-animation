@@ -19,11 +19,6 @@ export default class Renderer {
   }
 
   play() {
-    // let prev;
-    // prev = Promise.resolve();
-    // this.paths.forEach((instance) => {
-    //   prev = prev.then(() => instance.play());
-    // });
     return this.paths.reduce((prev, current) => {
       return prev.then(() => current.play());
     }, Promise.resolve());
