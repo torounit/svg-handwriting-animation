@@ -5,6 +5,10 @@
  */
 
 export default class Path {
+  /**
+   * @param {SVGPathElement} el
+   * @param {Number} speed
+   */
   constructor(el, speed) {
     this.el = el;
     this.totalLength = el.getTotalLength();
@@ -19,6 +23,9 @@ export default class Path {
     this.el.style.strokeDashoffset = this.totalLength;
   }
 
+  /**
+   * @returns {Promise}
+   */
   play() {
     return new Promise((resolve) => {
       const draw = () => {
