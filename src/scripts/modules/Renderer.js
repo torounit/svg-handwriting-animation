@@ -13,6 +13,7 @@ export default class Renderer {
   constructor(elements, speed) {
     this.elements = Array.from(elements);
     this.paths = this.elements.map(element => new Path(element, speed));
+    this.reset();
   }
 
   reset() {
