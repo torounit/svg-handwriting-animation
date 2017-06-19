@@ -49,25 +49,8 @@ const initPromise = () => Promise.resolve()
   .then(() => ph2.playAnimation())
   .then(btnShow2);
 
-// const ph1 = new PlayHandwriting(path1, 15, 0);
-// const ph2 = new PlayHandwriting(path2, 15, 0);
-// function resetAll() {
-//   return new Promise((resolve) => {
-//     wait.classList.add('fadeout');
-//     PlayHandwriting.reset(path1);
-//     PlayHandwriting.reset(path2);
-//     resolve(1000);
-//   });
-// }
-// const initPromise = () => {
-//   resetAll()
-//   .then(value => setTimeout(() => ph1.playAnimation(), value))
-//   .then(setTimeout(() => btn1.classList.toggle('hidden'), 3600))
-//   .then(setTimeout(() => ph2.playAnimation(), 3600))
-//   .then(setTimeout(() => btn2.classList.toggle('hidden'), 6200));
-// };
 
 window.onload = () => initPromise();
 
-replay(btn1, 3800, ph1, 10, 0);
-replay(btn2, 3800, ph2, 10, 0);
+replay(btn1, ph1);
+replay(btn2, ph2);

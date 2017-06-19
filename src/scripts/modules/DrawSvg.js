@@ -23,6 +23,7 @@ export default class DrawSvg {
   }
 
   reset() {
+    this.currentFrame = 0;
     const l = this.el.getTotalLength();
     this.el.style.strokeDasharray = `${l} ${l}`;
     this.el.style.strokeDashoffset = l;
