@@ -8,7 +8,6 @@
 
 import Path from './Path';
 
-
 export default class Renderer {
   /**
    * @param {NodeList} elements
@@ -16,18 +15,29 @@ export default class Renderer {
    */
   constructor(elements, speed) {
     /**
+     * @private
      * @type {Array}
      */
     this.elements = Array.from(elements);
+    console.log(this.elements);
     /**
+     * @private
      * @type {Path[]}
      */
-    this.paths = this.elements.map(element => new Path(element, speed));
+    this.paths = this.elements.map(
+      /**
+       * @param {SVGPathElement} element
+       */
+      element => new Path(element, speed));
     this.reset();
   }
 
   reset() {
-    this.paths.forEach(element => element.reset());
+    this.paths.forEach(
+      /**
+       * @param {Path} path
+       */
+      path => path.reset());
   }
 
   /**
@@ -40,9 +50,7 @@ export default class Renderer {
        * @param {Path} path
        * @returns {Promise}
        */
-      (prev, path) => {
-        return prev.then(() => path.play());
-      },
+      (prev, path) => prev.then(() => path.play()),
       Promise.resolve());
   }
 }
