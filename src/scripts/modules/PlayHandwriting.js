@@ -16,9 +16,6 @@ export default class PlayHandwriting {
     this.instanceArr = this.pathArr.map((elm, i) => {
       return new DrawSvg(elm, i, this.speed);
     });
-    this.frameArr = this.instanceArr.map((drawSvg) => {
-      return drawSvg.getFrame();
-    });
   }
 
   reset() {
