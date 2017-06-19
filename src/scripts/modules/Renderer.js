@@ -19,15 +19,18 @@ export default class Renderer {
      * @type {Array}
      */
     this.elements = Array.from(elements);
+
+    /**
+     * @param {SVGPathElement} element
+     */
+    const createPath = (element) => {
+      return new Path(element, speed);
+    };
     /**
      * @private
      * @type {Path[]}
      */
-    this.paths = this.elements.map(
-      /**
-       * @param {SVGPathElement} element
-       */
-      element => new Path(element, speed));
+    this.path = this.elements.map(createPath);
     this.reset();
   }
 
