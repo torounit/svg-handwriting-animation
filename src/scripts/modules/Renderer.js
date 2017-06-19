@@ -37,7 +37,7 @@ export default class Renderer {
       /**
        * @param {Path} path
        */
-      path => path.reset());
+      path => path.initialize());
   }
 
   /**

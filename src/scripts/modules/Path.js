@@ -13,11 +13,11 @@ export default class Path {
     this.el = el;
     this.totalLength = el.getTotalLength();
     this.totalFrame = Math.ceil(this.totalLength / speed);
-    this.currentFrame = 0;
     this.requestId = null;
+    this.initialize();
   }
 
-  reset() {
+  initialize() {
     this.currentFrame = 0;
     this.el.style.strokeDasharray = `${this.totalLength} ${this.totalLength}`;
     this.el.style.strokeDashoffset = this.totalLength;
