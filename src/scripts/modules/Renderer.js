@@ -11,7 +11,8 @@ import Path from './Path';
 
 export default class Renderer {
   constructor(elements, speed) {
-    this.paths = elements.map(element => new Path(element, speed));
+    this.elements = Array.from(elements);
+    this.paths = this.elements.map(element => new Path(element, speed));
   }
 
   reset() {

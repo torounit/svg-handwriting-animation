@@ -9,13 +9,11 @@
 import Renderer from './modules/Renderer';
 import replay from './modules/replay';
 
-const path1 = Array.from(document.querySelectorAll('#js-mask path'));
-const path2 = Array.from(document.querySelectorAll('#js-clip path'));
 const btn1 = document.getElementById('btn1');
 const btn2 = document.getElementById('btn2');
 
-const renderer1 = new Renderer(path1, 15);
-const renderer2 = new Renderer(path2, 15);
+const renderer1 = new Renderer(document.querySelectorAll('#js-mask path'), 15);
+const renderer2 = new Renderer(document.querySelectorAll('#js-clip path'), 15);
 
 const resetAll = () => {
   const wait = document.getElementById('js-wait');
