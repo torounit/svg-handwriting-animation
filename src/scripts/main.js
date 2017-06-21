@@ -20,12 +20,10 @@ const resetAll = () => {
   wait.classList.add('fadeout');
 };
 
-const initPromise = () => Promise.resolve()
-  .then(resetAll)
-  .then(() => renderer1.play())
-  .then(() => btn1.fadeIn())
-  .then(() => renderer2.play())
-  .then(() => btn2.fadeIn());
-
-
-window.onload = () => initPromise();
+window.addEventListener('load', async () => {
+  resetAll();
+  await renderer1.play();
+  await btn1.fadeIn();
+  await renderer2.play();
+  await btn2.fadeIn();
+});
