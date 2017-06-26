@@ -33,16 +33,15 @@ export default class Path {
         if (progress > 1) {
           window.cancelAnimationFrame(this.requestId);
           return resolve('complete');
-        } else {
-          this.currentFrame += 1;
-          this.el.style.strokeDashoffset = Math.floor(this.totalLength * (1 - progress));
-          this.requestId = window.requestAnimationFrame(() => {
-            draw();
-          });
-          return {
-            complete: false,
-          };
         }
+        this.currentFrame += 1;
+        this.el.style.strokeDashoffset = Math.floor(this.totalLength * (1 - progress));
+        this.requestId = window.requestAnimationFrame(() => {
+          draw();
+        });
+        return {
+          complete: false,
+        };
       };
       return draw();
     });
